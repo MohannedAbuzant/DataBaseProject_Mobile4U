@@ -1,6 +1,11 @@
 --------------------------------------------------------
---  File created - Monday-July-29-2019   
+--  File created - Tuesday-July-30-2019   
 --------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence COUNTER
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "SCOTT"."COUNTER"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Table BILL
 --------------------------------------------------------
@@ -330,3 +335,42 @@ Insert into SCOTT.SUPPLIER (FIRSTNAME,LASTNAME,SPHONENUMBER,PRODUCT_ID,PRODUCT_I
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table CASE
+--------------------------------------------------------
+
+  ALTER TABLE "SCOTT"."CASE" ADD FOREIGN KEY ("CASE_ID")
+	  REFERENCES "SCOTT"."PRODUCT" ("PRODUCT_ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table CHARGER
+--------------------------------------------------------
+
+  ALTER TABLE "SCOTT"."CHARGER" ADD FOREIGN KEY ("C_ID")
+	  REFERENCES "SCOTT"."PRODUCT" ("PRODUCT_ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table HEADPHONE
+--------------------------------------------------------
+
+  ALTER TABLE "SCOTT"."HEADPHONE" ADD CONSTRAINT "SUPNUMBER_FK_1" FOREIGN KEY ("SUPNUMBER")
+	  REFERENCES "SCOTT"."SUPPLIER" ("SPHONENUMBER") ENABLE;
+ 
+  ALTER TABLE "SCOTT"."HEADPHONE" ADD FOREIGN KEY ("H_ID")
+	  REFERENCES "SCOTT"."PRODUCT" ("PRODUCT_ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table PHONE
+--------------------------------------------------------
+
+  ALTER TABLE "SCOTT"."PHONE" ADD CONSTRAINT "PHONE_FK" FOREIGN KEY ("P_ID")
+	  REFERENCES "SCOTT"."PRODUCT" ("PRODUCT_ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table POWERBANK
+--------------------------------------------------------
+
+  ALTER TABLE "SCOTT"."POWERBANK" ADD FOREIGN KEY ("POWER_ID")
+	  REFERENCES "SCOTT"."PRODUCT" ("PRODUCT_ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table SUPPLIER
+--------------------------------------------------------
+
+  ALTER TABLE "SCOTT"."SUPPLIER" ADD CONSTRAINT "M" FOREIGN KEY ("PRODUCT_ID_TY")
+	  REFERENCES "SCOTT"."PRODUCT" ("PRODUCT_ID") ENABLE;
